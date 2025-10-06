@@ -1,0 +1,52 @@
+{
+  "general": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you were looking for does not exist"
+    },
+    "search": {
+      "placeholder": "Search",
+      "submit": "Search"
+    },
+    "newsletter": {
+      "placeholder": "Email address",
+      "submit": "Subscribe"
+    }
+  },
+  "sections": {
+    "header": {
+      "menu": "Menu",
+      "cart": "Cart"
+    },
+    "footer": {
+      "copyright": "© {{ date }} {{ shop_name }}. All rights reserved."
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "price": "Price"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your cart",
+      "empty": "Your cart is empty",
+      "subtotal": "Subtotal",
+      "update": "Update",
+      "checkout": "Checkout",
+      "continue_shopping": "Continue shopping"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Account",
+      "login": "Login",
+      "logout": "Logout",
+      "register": "Register"
+    }
+  }
+}
