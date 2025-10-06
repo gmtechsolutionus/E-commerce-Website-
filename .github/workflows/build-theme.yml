@@ -1,0 +1,20 @@
+name: Build theme CSS
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 18 }
+      - run: npm ci
+      - run: npm run build:theme
+      - name: Commit compiled assets
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add theme/assets/theme.css
+          git commit -m "chore: build theme.css" || echo "No changes"
+          git push

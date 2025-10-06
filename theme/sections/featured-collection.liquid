@@ -1,0 +1,61 @@
+<section class="featured-collection" style="margin-top:3rem">
+  {% if section.settings.title != blank %}
+    <h2 style="text-align:center;font-size:2.5rem;margin-bottom:2rem">{{ section.settings.title }}</h2>
+  {% endif %}
+  
+  {% assign collection = collections[section.settings.collection] %}
+  {% if collection.products_count > 0 %}
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;padding:0 1rem">
+      {% for product in collection.products limit: section.settings.products_to_show %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p style="text-align:center" class="muted">No products found in this collection.</p>
+  {% endif %}
+  
+  {% if section.settings.show_view_all %}
+    <div style="text-align:center;margin-top:2rem">
+      <a class="btn" href="{{ collection.url }}">View All</a>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4,
+      "label": "Products to show"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'View all' button",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}
