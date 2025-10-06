@@ -1,0 +1,60 @@
+<div class="cart-page" style="margin:3rem 0;max-width:900px;margin-left:auto;margin-right:auto">
+  <h1 style="font-size:2.5rem;margin-bottom:2rem">Shopping Cart</h1>
+  
+  {% if cart.item_count > 0 %}
+    <form action="{{ routes.cart_url }}" method="post">
+      <div class="cart-items">
+        {% for item in cart.items %}
+          <div class="card" style="padding:1.5rem;margin-bottom:1rem;display:grid;grid-template-columns:120px 1fr auto;gap:1.5rem;align-items:center">
+            <a href="{{ item.url }}">
+              {{ item.image | image_url: width: 240 | image_tag: alt: item.title, loading: 'lazy' }}
+            </a>
+            
+            <div>
+              <h3 style="margin:0 0 .5rem">
+                <a href="{{ item.url }}">{{ item.title }}</a>
+              </h3>
+              <p class="muted">{{ item.price | money }}</p>
+              {% if item.variant.title != 'Default Title' %}
+                <p class="muted">{{ item.variant.title }}</p>
+              {% endif %}
+            </div>
+            
+            <div style="display:flex;flex-direction:column;gap:.75rem;align-items:flex-end">
+              <div style="display:flex;gap:.5rem;align-items:center">
+                <label for="updates_{{ item.key }}">Qty:</label>
+                <input type="number" id="updates_{{ item.key }}" name="updates[]" value="{{ item.quantity }}" min="0" class="input" style="width:70px">
+              </div>
+              <div style="font-weight:600">{{ item.line_price | money }}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      
+      <div class="cart-footer" style="margin-top:2rem;display:flex;justify-content:space-between;align-items:center">
+        <button type="submit" name="update" class="btn">Update Cart</button>
+        
+        <div style="text-align:right">
+          <div class="muted" style="margin-bottom:.5rem">Subtotal</div>
+          <div style="font-size:2rem;font-weight:600">{{ cart.total_price | money }}</div>
+          <p class="muted" style="margin-top:.5rem">Shipping calculated at checkout</p>
+          <a href="{{ routes.cart_url }}/checkout" class="btn" style="display:inline-block;margin-top:1rem;padding:1rem 2rem">
+            Checkout
+          </a>
+        </div>
+      </div>
+    </form>
+  {% else %}
+    <div class="card" style="padding:3rem;text-align:center">
+      <p class="muted" style="margin-bottom:1.5rem">Your cart is empty</p>
+      <a href="{{ routes.collections_url }}" class="btn">Continue Shopping</a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Cart Items",
+  "settings": []
+}
+{% endschema %}
