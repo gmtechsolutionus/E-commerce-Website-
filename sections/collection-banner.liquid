@@ -1,0 +1,14 @@
+<div class="collection-banner card" style="padding:3rem;text-align:center;margin:2rem 0">
+  <h1 style="font-size:3rem;margin:0 0 .5rem">{{ collection.title }}</h1>
+  {% if collection.description != blank %}
+    <p class="muted">{{ collection.description }}</p>
+  {% endif %}
+  <p class="muted">{{ collection.products_count }} products</p>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Banner",
+  "settings": []
+}
+{% endschema %}
