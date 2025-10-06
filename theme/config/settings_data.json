@@ -1,0 +1,23 @@
+{
+  "current": {
+    "logo": "",
+    "tagline": "Designed for fans of the future",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  },
+  "presets": {
+    "Default": {
+      "logo": "",
+      "tagline": "Designed for fans of the future"
+    }
+  }
+}
