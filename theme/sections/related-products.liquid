@@ -1,0 +1,29 @@
+<section class="related-products" style="margin:4rem 0">
+  {% if section.settings.title != blank %}
+    <h2 style="text-align:center;font-size:2rem;margin-bottom:2rem">{{ section.settings.title }}</h2>
+  {% endif %}
+  
+  {% assign related_products = product.collections.first.products | where_not: "id", product.id %}
+  
+  {% if related_products.size > 0 %}
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem">
+      {% for related_product in related_products limit: 4 %}
+        {% render 'product-card', product: related_product %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Related Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Related Products"
+    }
+  ]
+}
+{% endschema %}
