@@ -1,3 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Orbitron:wght@400;600;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Futuristic Dark Theme for Shopify templates */
+@layer base {
+  :root {
+    --bg-0: #0b0f19; /* base background */
+    --bg-1: #0f1526; /* elevated background */
+    --surface: rgba(255, 255, 255, 0.06); /* glass */
+    --border: rgba(255, 255, 255, 0.12);
+    --text: #e6e9ef; /* primary text */
+    --muted: #9aa4b2; /* secondary text */
+    --accent: #7c3aed; /* electric purple */
+    --accent-2: #06b6d4; /* neon cyan */
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    color: var(--text);
+    background-color: var(--bg-0);
+    font-family: 'Outfit', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Multi-layer neon gradient + subtle grid background */
+    background-image:
+      radial-gradient(1200px 600px at 20% -10%, rgba(124, 58, 237, 0.25), transparent 60%),
+      radial-gradient(800px 400px at 80% -10%, rgba(6, 182, 212, 0.20), transparent 60%),
+      radial-gradient(1000px 600px at 50% 120%, rgba(124, 58, 237, 0.12), transparent 60%),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02)),
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px, transparent 80px),
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px, transparent 80px);
+    background-attachment: fixed, fixed, fixed, scroll, scroll, scroll;
+    background-size: auto, auto, auto, auto, 80px 80px, 80px 80px;
+  }
+
+  /* Ambient glow orbits */
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    inset: -20vmax;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(80px);
+    opacity: 0.35;
+    background: conic-gradient(from 180deg at 50% 50%, rgba(124, 58, 237, 0.12), rgba(6, 182, 212, 0.12), rgba(124, 58, 237, 0.12));
+  }
+  body::after {
+    inset: -30vmax;
+    transform: rotate(15deg);
+    opacity: 0.25;
+  }
+
+  ::selection {
+    background: rgba(124, 58, 237, 0.4);
+    color: #fff;
+  }
+
+  h1, h2, h3, h4 {
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+  a:hover {
+    color: #b794f4; /* lighter purple */
+  }
+}
+
+@layer components {
+  /* Layout container used across theme */
+  .page-width {
+    width: min(1200px, 92vw);
+    margin-inline: auto;
+  }
+
+  /* Glassmorphism card */
+  .card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    color: var(--text);
+  }
+
+  .muted {
+    color: var(--muted);
+  }
+
+  /* Neon gradient brand */
+  .logo {
+    font-family: 'Orbitron', 'Outfit', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+  }
+
+  header.header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: saturate(160%) blur(10px);
+    -webkit-backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  header nav a {
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.35rem 0.5rem;
+    border-radius: 10px;
+  }
+  header nav a:hover {
+    color: #e9d5ff; /* soft lavender */
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.72rem 1.1rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+    color: #0b0f19;
+    border: 1px solid rgba(124, 58, 237, 0.45);
+    box-shadow: 0 0 0 rgba(124, 58, 237, 0), 0 8px 24px rgba(6, 182, 212, 0.22);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow: 0 0 0 rgba(124, 58, 237, 0), 0 12px 32px rgba(6, 182, 212, 0.28);
+  }
+  .btn:active {
+    transform: translateY(0) scale(0.98);
+  }
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.35), 0 8px 22px rgba(6, 182, 212, 0.24);
+  }
+
+  /* Inputs */
+  .input {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 12px;
+    padding: 0.6rem 0.8rem;
+    min-width: 260px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .input::placeholder {
+    color: var(--muted);
+  }
+  .input:focus {
+    border-color: rgba(124, 58, 237, 0.65);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.35);
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+@layer utilities {
+  /* Subtle section spacing utility for templates */
+  .section-gap {
+    padding-block: clamp(2rem, 5vw, 4rem);
+  }
+}
